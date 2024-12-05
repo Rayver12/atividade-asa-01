@@ -1,15 +1,27 @@
 services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: web
+    ports:
+      - "80:80"
+    container_name: web
+    restart: always
+    tty: true
+    volumes:
+      - ./web/html/:/usr/share/nginx/html/
   dns:
-    build: ./dns
+    build:
+      context: ./dns
+      dockerfile: Dockerfile
+    image: dns
+    volumes:
+      - ./dns/bind/db.asa.local:/etc/bind/db.asa.local
+      - ./dns/bind/named.conf.local:/etc/bind/named.conf.local
+    container_name: dns
+    restart: always
+    tty: true
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-    volumes:
-      - ./dns/bind:/etc/bind/
-  web:
-    build: ./web
-    ports:
-      - "80:80"
-    volumes:
-      - ./web/html:/usr/share/nginx/html/
-
