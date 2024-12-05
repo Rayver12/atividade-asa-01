@@ -1,0 +1,15 @@
+services:
+  dns:
+    build: ./dns
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    volumes:
+      - ./dns/bind:/etc/bind/
+  web:
+    build: ./web
+    ports:
+      - "80:80"
+    volumes:
+      - ./web/html:/usr/share/nginx/html/
+
