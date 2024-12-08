@@ -17,7 +17,7 @@ services:
       dockerfile: Dockerfile
     image: dns
     volumes:
-      - ./dns/bind/db.asa.local:/etc/bind/db.asa.local
+      - ./dns/bind/db.asa.br:/etc/bind/db.asa.br
       - ./dns/bind/named.conf.local:/etc/bind/named.conf.local
     container_name: dns
     restart: always
